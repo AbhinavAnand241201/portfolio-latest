@@ -19,7 +19,7 @@ const projects = [
     demo: 'https://github.com/AbhinavAnand241201/AI-Powered-Resume-Keyword-Matcher',
   },
   {
-    title: 'Threads iOS Clone',
+    title: 'ConnectSphere-X iOS App',
     description: "ConnectSphere is a SwiftUI-powered iOS app that brings storytelling to life with short, 500-character posts, photos, polls, or 10-second audio snippets, all running smoothly on Firebase's rock-solid backend. Dive into niche public groups or private circles, where threaded replies and weekly challenges spark 30% more interaction. With a clean, responsive UI, 25% quicker load times, and a handy analytics dashboard for creators, it's built for real connections. ConnectSphere: share your story, join the vibe, and make your voice heard.",
     tags: ['Swift', 'SwiftUI', 'Firebase', 'Social Media'],
     github: 'https://github.com/AbhinavAnand241201/threads-iOS-app',
