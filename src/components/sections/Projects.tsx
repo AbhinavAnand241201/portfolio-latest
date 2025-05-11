@@ -6,24 +6,21 @@ import { Github, ExternalLink } from 'lucide-react';
 const projects = [
   {
     title: 'Confession-X iOS App',
-    description: 'Confession-X is a next-gen iOS app crafted with Swift and SwiftUI, leveraging MVVM for improved performance.',
-    fullDescription: 'Confession-X is a next-gen iOS app crafted with Swift and SwiftUI, leveraging MVVM for 35% improved performance. Share anonymous confessions, multimedia stories, and polls with 99.9% Firebase-backed reliability, ensuring total privacy control. Experience dynamic feeds and private groups, designed for 50% faster engagement via real-time interactions. Daily prompts spark 45% more creative expression, all within a memory-efficient, visually breathtaking UI. Confession-X: where secrets ignite and connections flourish.',
+    description: 'A privacy-focused confession app built with Swift, featuring secure user authentication and real-time updates. The app prioritizes user privacy while maintaining a seamless social experience.',
     tags: ['Swift', 'SwiftUI', 'Firebase', 'Privacy'],
     github: 'https://github.com/AbhinavAnand241201/Confession-X-iOS',
     demo: 'https://github.com/AbhinavAnand241201/Confession-X-iOS',
   },
   {
     title: 'AI-Powered Resume Matcher',
-    description: 'AI-Resume Keyword Matcher is an innovative Flask-powered web app that transforms job applications using advanced NLP.',
-    fullDescription: 'AI-Resume Keyword Matcher is an innovative Flask-powered web app that transforms job applications using advanced NLP. Upload your PDF resume and job description to get a 97% accurate similarity score with highlighted keywords in under 10 seconds. Enhance your application strength by 45% with actionable insights on matching and missing keywords, all within a sleek Bootstrap interface. Seamlessly search jobs via Adzuna API, track progress with an analytics dashboard, and export results as PDFs. Resume Keyword Matcher: your key to unlocking career opportunities.',
+    description: 'An intelligent resume analysis tool that uses AI to match resumes with job descriptions. Built with Python and modern web technologies, it helps job seekers optimize their resumes for better matches.',
     tags: ['Python', 'AI', 'Flask', 'NLP'],
     github: 'https://github.com/AbhinavAnand241201/AI-Powered-Resume-Keyword-Matcher',
     demo: 'https://github.com/AbhinavAnand241201/AI-Powered-Resume-Keyword-Matcher',
   },
   {
-    title: 'ConnectSphere-X iOS App',
-    description: 'ConnectSphere is a SwiftUI-powered iOS app that brings storytelling to life with short, 500-character posts.',
-    fullDescription: "ConnectSphere is a SwiftUI-powered iOS app that brings storytelling to life with short, 500-character posts, photos, polls, or 10-second audio snippets, all running smoothly on Firebase's rock-solid backend. Dive into niche public groups or private circles, where threaded replies and weekly challenges spark 30% more interaction. With a clean, responsive UI, 25% quicker load times, and a handy analytics dashboard for creators, it's built for real connections. ConnectSphere: share your story, join the vibe, and make your voice heard.",
+    title: 'Threads iOS Clone',
+    description: 'A feature-rich iOS app clone of Threads, built with Swift and modern iOS development practices. Implements core social media features with a focus on performance and user experience.',
     tags: ['Swift', 'SwiftUI', 'Firebase', 'Social Media'],
     github: 'https://github.com/AbhinavAnand241201/threads-iOS-app',
     demo: 'https://github.com/AbhinavAnand241201/threads-iOS-app',
@@ -31,12 +28,6 @@ const projects = [
 ];
 
 const Projects: React.FC = () => {
-  const [expandedIndex, setExpandedIndex] = React.useState<number | null>(null);
-
-  const toggleExpand = (index: number) => {
-    setExpandedIndex(expandedIndex === index ? null : index);
-  };
-
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -78,13 +69,11 @@ const Projects: React.FC = () => {
           {projects.map((project, index) => (
             <div
               key={index}
-              className={`project-card bg-black border border-white rounded-lg overflow-hidden transform-gpu transition-all duration-300 ${expandedIndex === index ? 'h-auto' : 'h-64'}`}
+              className="project-card bg-black border border-white rounded-lg overflow-hidden transform-gpu"
             >
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-3 text-white">{project.title}</h3>
-                <p className="text-gray-300 mb-4">
-                  {expandedIndex === index ? project.fullDescription : project.description}
-                </p>
+                <p className="text-gray-300 mb-4">{project.description}</p>
                 <div className="flex flex-wrap gap-2 mb-6">
                   {project.tags.map((tag, tagIndex) => (
                     <span
@@ -115,12 +104,6 @@ const Projects: React.FC = () => {
                     <span>Visit</span>
                   </a>
                 </div>
-                <button
-                  onClick={() => toggleExpand(index)}
-                  className="mt-4 text-sm text-white bg-black border border-white rounded-full px-4 py-2 hover:bg-white hover:text-black transition-colors"
-                >
-                  {expandedIndex === index ? 'Collapse' : 'Expand'}
-                </button>
               </div>
             </div>
           ))}
