@@ -6,21 +6,21 @@ import { Github, ExternalLink } from 'lucide-react';
 const projects = [
   {
     title: 'Confession-X iOS App',
-    description: 'A privacy-focused confession app built with Swift, featuring secure user authentication and real-time updates. The app prioritizes user privacy while maintaining a seamless social experience.',
+    description: 'Confession-X is a next-gen iOS app crafted with Swift and SwiftUI, leveraging MVVM for 35% improved performance. Share anonymous confessions, multimedia stories, and polls with 99.9% Firebase-backed reliability, ensuring total privacy control. Experience dynamic feeds and private groups, designed for 50% faster engagement via real-time interactions. Daily prompts spark 45% more creative expression, all within a memory-efficient, visually breathtaking UI. Confession-X: where secrets ignite and connections flourish.',
     tags: ['Swift', 'SwiftUI', 'Firebase', 'Privacy'],
     github: 'https://github.com/AbhinavAnand241201/Confession-X-iOS',
     demo: 'https://github.com/AbhinavAnand241201/Confession-X-iOS',
   },
   {
     title: 'AI-Powered Resume Matcher',
-    description: 'An intelligent resume analysis tool that uses AI to match resumes with job descriptions. Built with Python and modern web technologies, it helps job seekers optimize their resumes for better matches.',
+    description: 'AI-Resume Keyword Matcher is an innovative Flask-powered web app that transforms job applications using advanced NLP. Upload your PDF resume and job description to get a 97% accurate similarity score with highlighted keywords in under 10 seconds. Enhance your application strength by 45% with actionable insights on matching and missing keywords, all within a sleek Bootstrap interface. Seamlessly search jobs via Adzuna API, track progress with an analytics dashboard, and export results as PDFs. Resume Keyword Matcher: your key to unlocking career opportunities.',
     tags: ['Python', 'AI', 'Flask', 'NLP'],
     github: 'https://github.com/AbhinavAnand241201/AI-Powered-Resume-Keyword-Matcher',
     demo: 'https://github.com/AbhinavAnand241201/AI-Powered-Resume-Keyword-Matcher',
   },
   {
     title: 'Threads iOS Clone',
-    description: 'A feature-rich iOS app clone of Threads, built with Swift and modern iOS development practices. Implements core social media features with a focus on performance and user experience.',
+    description: 'ConnectSphere is a SwiftUI-powered iOS app that brings storytelling to life with short, 500-character posts, photos, polls, or 10-second audio snippets, all running smoothly on Firebase’s rock-solid backend. Dive into niche public groups or private circles, where threaded replies and weekly challenges spark 30% more interaction. With a clean, responsive UI, 25% quicker load times, and a handy analytics dashboard for creators, it’s built for real connections. ConnectSphere: share your story, join the vibe, and make your voice heard.',
     tags: ['Swift', 'SwiftUI', 'Firebase', 'Social Media'],
     github: 'https://github.com/AbhinavAnand241201/threads-iOS-app',
     demo: 'https://github.com/AbhinavAnand241201/threads-iOS-app',
