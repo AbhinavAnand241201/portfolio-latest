@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { User, Folder, Code2, GitBranch, Mail } from 'lucide-react';
 
 const navItems = [
@@ -12,7 +12,7 @@ const navItems = [
 ];
 
 const Header: React.FC = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -27,8 +27,16 @@ const Header: React.FC = () => {
           <div className="ml-3 h-7 w-0.5 bg-white/60"></div>
           <span className="ml-3 text-sm text-white/80">iOS App Developer</span>
         </div>
+        {/* Hamburger Icon */}
+        <div className="md:hidden">
+          <button onClick={toggleMenu} className="text-white focus:outline-none">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+          </button>
+        </div>
         {/* Main Nav */}
-        <nav className="hidden md:flex items-center gap-4">
+        <nav className={`flex-col md:flex-row md:flex items-center gap-4 ${isOpen ? 'flex' : 'hidden'} md:flex`}> 
           {navItems.map(item => (
             <a 
               key={item.title} 
@@ -40,32 +48,7 @@ const Header: React.FC = () => {
             </a>
           ))}
         </nav>
-        {/* Mobile Menu Button */}
-        <button className="md:hidden text-white" onClick={toggleMenu}>
-          <span className="sr-only">Open main menu</span>
-          <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-          </svg>
-        </button>
       </div>
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden bg-black/90">
-          <nav className="flex flex-col items-center py-4">
-            {navItems.map(item => (
-              <a 
-                key={item.title} 
-                href={item.href} 
-                className="text-white/80 flex items-center gap-1 py-2"
-                onClick={toggleMenu}
-              >
-                {item.icon}
-                <span className="text-sm">{item.title}</span>
-              </a>
-            ))}
-          </nav>
-        </div>
-      )}
     </header>
   );
 };
