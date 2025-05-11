@@ -6,21 +6,21 @@ import { Github, ExternalLink } from 'lucide-react';
 const projects = [
   {
     title: 'Confession-X iOS App',
-    description: 'Confession-X is a next-gen iOS app crafted with Swift and SwiftUI, leveraging MVVM for 35% improved performance. Share anonymous confessions, multimedia stories, and polls with 99.9% Firebase-backed reliability, ensuring total privacy control. Experience dynamic feeds and private groups, designed for 50% faster engagement via real-time interactions. Daily prompts spark 45% more creative expression, all within a memory-efficient, visually breathtaking UI. Confession-X: where secrets ignite and connections flourish.',
+    description: 'Confession-X is an iOS app crafted with Swift and SwiftUI, leveraging MVVM for enhanced performance. Share anonymous confessions, multimedia stories, and polls with high reliability using Firebase, ensuring total privacy control. Experience dynamic feeds and private groups, designed for faster engagement via real-time interactions. Daily prompts spark more creative expression, all within a memory-efficient, visually appealing UI. Confession-X: where secrets ignite and connections flourish.',
     tags: ['Swift', 'SwiftUI', 'Firebase', 'Privacy'],
     github: 'https://github.com/AbhinavAnand241201/Confession-X-iOS',
     demo: 'https://github.com/AbhinavAnand241201/Confession-X-iOS',
   },
   {
     title: 'AI-Powered Resume Matcher',
-    description: 'AI-Resume Keyword Matcher is an innovative Flask-powered web app that transforms job applications using advanced NLP. Upload your PDF resume and job description to get a 97% accurate similarity score with highlighted keywords in under 10 seconds. Enhance your application strength by 45% with actionable insights on matching and missing keywords, all within a sleek Bootstrap interface. Seamlessly search jobs via Adzuna API, track progress with an analytics dashboard, and export results as PDFs. Resume Keyword Matcher: your key to unlocking career opportunities.',
+    description: 'AI-Resume Keyword Matcher is a Flask-powered web app that transforms job applications using advanced NLP. Upload your PDF resume and job description to get a highly accurate similarity score with highlighted keywords in under 10 seconds. Enhance your application strength with actionable insights on matching and missing keywords, all within a sleek Bootstrap interface. Seamlessly search jobs via Adzuna API, track progress with an analytics dashboard, and export results as PDFs. Resume Keyword Matcher: your key to unlocking career opportunities.',
     tags: ['Python', 'AI', 'Flask', 'NLP'],
     github: 'https://github.com/AbhinavAnand241201/AI-Powered-Resume-Keyword-Matcher',
     demo: 'https://github.com/AbhinavAnand241201/AI-Powered-Resume-Keyword-Matcher',
   },
   {
-    title: 'Threads iOS Clone',
-    description: 'ConnectSphere is a SwiftUI-powered iOS app that brings storytelling to life with short, 500-character posts, photos, polls, or 10-second audio snippets, all running smoothly on Firebase’s rock-solid backend. Dive into niche public groups or private circles, where threaded replies and weekly challenges spark 30% more interaction. With a clean, responsive UI, 25% quicker load times, and a handy analytics dashboard for creators, it’s built for real connections. ConnectSphere: share your story, join the vibe, and make your voice heard.',
+    title: 'ConnectSphere-iOS App',
+    description: 'ConnectSphere is a SwiftUI-powered iOS app that brings storytelling to life with short, 500-character posts, photos, polls, or 10-second audio snippets, all running smoothly on Firebase’s reliable backend. Dive into niche public groups or private circles, where threaded replies and weekly challenges spark increased interaction. With a clean, responsive UI, faster load times, and a handy analytics dashboard for creators, it’s built for real connections. ConnectSphere: share your story, join the vibe, and make your voice heard.',
     tags: ['Swift', 'SwiftUI', 'Firebase', 'Social Media'],
     github: 'https://github.com/AbhinavAnand241201/threads-iOS-app',
     demo: 'https://github.com/AbhinavAnand241201/threads-iOS-app',
