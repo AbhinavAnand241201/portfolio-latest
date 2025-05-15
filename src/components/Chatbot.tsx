@@ -35,7 +35,7 @@ const Chatbot: React.FC = () => {
       setTimeout(() => {
         setMessages([
           { 
-            text: "Hey! 👋 Are you hiring a talented iOS developer?", 
+            text: "Hey! 👋 Are you hiring a skillful iOS developer?", 
             isBot: true, 
             options: ["Yes!", "No, just browsing"] 
           }
@@ -43,24 +43,6 @@ const Chatbot: React.FC = () => {
       }, 500);
     }
   }, [isOpen, messages]);
-  
-  // No response timer - show additional option after 10 seconds
-  useEffect(() => {
-    if (messages.length === 1 && !hasInteracted) {
-      const timer = setTimeout(() => {
-        setMessages(prevMessages => [
-          ...prevMessages, 
-          { 
-            text: "I can show you a live coding demo of my skills! Interested?", 
-            isBot: true, 
-            options: ["Show me the demo", "No thanks"] 
-          }
-        ]);
-      }, 10000);
-      
-      return () => clearTimeout(timer);
-    }
-  }, [messages, hasInteracted]);
   
   const handleResponse = (text: string) => {
     setHasInteracted(true);
@@ -79,9 +61,17 @@ const Chatbot: React.FC = () => {
           }
         ]);
         
-        // Scroll to projects section
+        // Scroll to projects section using Locomotive Scroll
         setTimeout(() => {
-          document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+          const projectsSection = document.querySelector('#projects');
+          if (projectsSection) {
+            const scrollInstance = (window as any).locomotiveScroll;
+            if (scrollInstance) {
+              scrollInstance.scrollTo(projectsSection);
+            } else {
+              projectsSection.scrollIntoView({ behavior: 'smooth' });
+            }
+          }
         }, 1000);
       } 
       else if (text === "No, just browsing") {
@@ -94,19 +84,6 @@ const Chatbot: React.FC = () => {
           }
         ]);
       }
-      else if (text === "Show me the demo") {
-        setMessages(prev => [
-          ...prev, 
-          { 
-            text: "Let's check out a live demo of my coding skills!", 
-            isBot: true 
-          }
-        ]);
-        
-        setTimeout(() => {
-          document.getElementById('live-demo')?.scrollIntoView({ behavior: 'smooth' });
-        }, 1000);
-      }
       else if (text === "Show LeetCode") {
         setMessages(prev => [
           ...prev, 
@@ -117,7 +94,15 @@ const Chatbot: React.FC = () => {
         ]);
         
         setTimeout(() => {
-          document.getElementById('leetcode')?.scrollIntoView({ behavior: 'smooth' });
+          const leetcodeSection = document.querySelector('#leetcode');
+          if (leetcodeSection) {
+            const scrollInstance = (window as any).locomotiveScroll;
+            if (scrollInstance) {
+              scrollInstance.scrollTo(leetcodeSection);
+            } else {
+              leetcodeSection.scrollIntoView({ behavior: 'smooth' });
+            }
+          }
         }, 1000);
       }
       else if (text === "Show Contributions") {
@@ -130,7 +115,15 @@ const Chatbot: React.FC = () => {
         ]);
         
         setTimeout(() => {
-          document.getElementById('contributions')?.scrollIntoView({ behavior: 'smooth' });
+          const contributionsSection = document.querySelector('#contributions');
+          if (contributionsSection) {
+            const scrollInstance = (window as any).locomotiveScroll;
+            if (scrollInstance) {
+              scrollInstance.scrollTo(contributionsSection);
+            } else {
+              contributionsSection.scrollIntoView({ behavior: 'smooth' });
+            }
+          }
         }, 1000);
       }
       else {
