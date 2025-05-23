@@ -138,7 +138,6 @@ const Projects: React.FC = () => {
         setCurrentImageIndex((prev) => (prev - 1 + project.images!.length) % project.images!.length);
       }
     },
-    preventDefaultTouchmoveEvent: true,
     trackMouse: false
   });
 
@@ -239,31 +238,32 @@ const Projects: React.FC = () => {
                     </motion.span>
                   </motion.div>
                 ) : (
-                  <motion.div 
-                    className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-center justify-center"
-                    initial={false}
-                    animate={{ 
-                      opacity: isMobile || showDemoButton === index ? 1 : 0,
-                      transition: { duration: 0.2 }
-                    }}
-                    onClick={() => {
-                      if (!isMobile) {
-                        alert('Rendering Error: Please check your internet connection and try again.');
-                      }
-                    }}
-                  >
-                    <motion.span 
-                      className="text-white text-sm font-medium px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm cursor-pointer"
-                      initial={{ y: 10, opacity: 0 }}
+                  // Only show this on desktop
+                  !isMobile && (
+                    <motion.div 
+                      className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-center justify-center"
+                      initial={false}
                       animate={{ 
-                        y: 0, 
-                        opacity: isMobile || showDemoButton === index ? 1 : 0,
+                        opacity: showDemoButton === index ? 1 : 0,
                         transition: { duration: 0.2 }
                       }}
+                      onClick={() => {
+                        alert('Rendering Error: Please check your internet connection and try again.');
+                      }}
                     >
-                      View Demo
-                    </motion.span>
-                  </motion.div>
+                      <motion.span 
+                        className="text-white text-sm font-medium px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm cursor-pointer"
+                        initial={{ y: 10, opacity: 0 }}
+                        animate={{ 
+                          y: 0, 
+                          opacity: showDemoButton === index ? 1 : 0,
+                          transition: { duration: 0.2 }
+                        }}
+                      >
+                        View Demo
+                      </motion.span>
+                    </motion.div>
+                  )
                 )}
               </div>
             </motion.div>
