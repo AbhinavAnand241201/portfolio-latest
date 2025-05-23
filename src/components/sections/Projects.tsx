@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Github, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useSwipeable } from 'react-swipeable';
 
 interface Project {
   title: string;
@@ -123,6 +124,24 @@ const Projects: React.FC = () => {
     }
   };
 
+  // Swipe handlers for mobile
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: () => {
+      if (activeProject !== null && projects[activeProject].images) {
+        const project = projects[activeProject];
+        setCurrentImageIndex((prev) => (prev + 1) % project.images!.length);
+      }
+    },
+    onSwipedRight: () => {
+      if (activeProject !== null && projects[activeProject].images) {
+        const project = projects[activeProject];
+        setCurrentImageIndex((prev) => (prev - 1 + project.images!.length) % project.images!.length);
+      }
+    },
+    preventDefaultTouchmoveEvent: true,
+    trackMouse: false
+  });
+
   return (
     <section id="projects" ref={ref} className="section relative bg-black text-white">
       <div className="container-custom">
@@ -165,7 +184,7 @@ const Projects: React.FC = () => {
                     <motion.span
                       key={tagIndex}
                       className="px-3 py-1 text-sm bg-white/10 rounded-full text-white"
-                      whileHover={{ scale: 1.05 }}
+                      whileHover={{ scale: isMobile ? 1 : 1.05 }}
                       transition={{ type: "spring", stiffness: 400, damping: 10 }}
                     >
                       {tag}
@@ -178,7 +197,7 @@ const Projects: React.FC = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
-                    whileHover={{ scale: 1.05 }}
+                    whileHover={{ scale: isMobile ? 1 : 1.05 }}
                     transition={{ duration: 0.2 }}
                     onClick={(e) => e.stopPropagation()}
                   >
@@ -190,7 +209,7 @@ const Projects: React.FC = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
-                    whileHover={{ scale: 1.05 }}
+                    whileHover={{ scale: isMobile ? 1 : 1.05 }}
                     transition={{ duration: 0.2 }}
                     onClick={(e) => e.stopPropagation()}
                   >
@@ -228,7 +247,9 @@ const Projects: React.FC = () => {
                       transition: { duration: 0.2 }
                     }}
                     onClick={() => {
-                      alert('Rendering Error: Please check your internet connection and try again.');
+                      if (!isMobile) {
+                        alert('Rendering Error: Please check your internet connection and try again.');
+                      }
                     }}
                   >
                     <motion.span 
@@ -266,6 +287,7 @@ const Projects: React.FC = () => {
               exit={{ scale: 0.95, opacity: 0 }}
               className="relative w-full max-w-[280px] md:max-w-[320px] bg-black rounded-[40px] overflow-hidden shadow-2xl"
               onClick={(e) => e.stopPropagation()}
+              {...swipeHandlers}
             >
               {/* iPhone frame */}
               <div className="relative w-full pt-[216.67%]">
@@ -291,16 +313,6 @@ const Projects: React.FC = () => {
 
               {/* Improved Mobile Navigation */}
               <div className="absolute inset-0 z-20">
-                {/* Swipe areas for mobile */}
-                <div className="absolute inset-y-0 left-0 w-1/3" onClick={(e) => {
-                  e.stopPropagation();
-                  handlePrevImage(e);
-                }} />
-                <div className="absolute inset-y-0 right-0 w-1/3" onClick={(e) => {
-                  e.stopPropagation();
-                  handleNextImage(e);
-                }} />
-
                 {/* Desktop navigation buttons - hidden on mobile */}
                 <div className="hidden md:flex absolute inset-0 items-center justify-between px-4">
                   <motion.button
