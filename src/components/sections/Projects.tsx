@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Github, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -55,6 +55,16 @@ const Projects: React.FC = () => {
 
   const [activeProject, setActiveProject] = useState<number | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [showDemoButton, setShowDemoButton] = useState<number | null>(null);
+
+  // Auto-show demo button on mobile after 1 second
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowDemoButton(0); // Show for first project initially
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -125,6 +135,8 @@ const Projects: React.FC = () => {
                 transition: { duration: 0.2 }
               }}
               onClick={() => project.images && setActiveProject(index)}
+              onMouseEnter={() => setShowDemoButton(index)}
+              onMouseLeave={() => setShowDemoButton(null)}
             >
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-3 text-white">{project.title}</h3>
@@ -169,26 +181,33 @@ const Projects: React.FC = () => {
                 </div>
                 {project.images ? (
                   <motion.div 
-                    className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-200 flex items-center justify-center"
+                    className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-center justify-center"
                     initial={false}
-                    animate={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
+                    animate={{ 
+                      opacity: showDemoButton === index ? 1 : 0,
+                      transition: { duration: 0.2 }
+                    }}
                   >
                     <motion.span 
                       className="text-white text-sm font-medium px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm"
                       initial={{ y: 10, opacity: 0 }}
-                      whileHover={{ y: 0, opacity: 1 }}
-                      transition={{ duration: 0.2 }}
+                      animate={{ 
+                        y: 0, 
+                        opacity: showDemoButton === index ? 1 : 0,
+                        transition: { duration: 0.2 }
+                      }}
                     >
                       View Demo
                     </motion.span>
                   </motion.div>
                 ) : (
                   <motion.div 
-                    className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-200 flex items-center justify-center"
+                    className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-center justify-center"
                     initial={false}
-                    animate={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
+                    animate={{ 
+                      opacity: showDemoButton === index ? 1 : 0,
+                      transition: { duration: 0.2 }
+                    }}
                     onClick={() => {
                       alert('Rendering Error: Please check your internet connection and try again.');
                     }}
@@ -196,8 +215,11 @@ const Projects: React.FC = () => {
                     <motion.span 
                       className="text-white text-sm font-medium px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm cursor-pointer"
                       initial={{ y: 10, opacity: 0 }}
-                      whileHover={{ y: 0, opacity: 1 }}
-                      transition={{ duration: 0.2 }}
+                      animate={{ 
+                        y: 0, 
+                        opacity: showDemoButton === index ? 1 : 0,
+                        transition: { duration: 0.2 }
+                      }}
                     >
                       View Demo
                     </motion.span>
@@ -209,7 +231,7 @@ const Projects: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* Improved Image Carousel Modal */}
+      {/* Improved Mobile-Friendly Carousel Modal */}
       <AnimatePresence>
         {activeProject !== null && projects[activeProject].images && (
           <motion.div
@@ -242,12 +264,48 @@ const Projects: React.FC = () => {
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.95 }}
-                      transition={{ 
-                        duration: 0.4,
-                        ease: [0.4, 0, 0.2, 1]
-                      }}
+                      transition={{ duration: 0.4 }}
                     />
                   </div>
+                </div>
+              </div>
+
+              {/* Simplified Mobile Navigation */}
+              <div className="absolute inset-0 z-20">
+                {/* Swipe areas for mobile */}
+                <div className="absolute inset-y-0 left-0 w-1/3" onClick={(e) => {
+                  e.stopPropagation();
+                  handlePrevImage(e);
+                }} />
+                <div className="absolute inset-y-0 right-0 w-1/3" onClick={(e) => {
+                  e.stopPropagation();
+                  handleNextImage(e);
+                }} />
+
+                {/* Desktop navigation buttons - hidden on mobile */}
+                <div className="hidden md:flex absolute inset-0 items-center justify-between px-2">
+                  <motion.button
+                    className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handlePrevImage(e);
+                    }}
+                    whileHover={{ scale: 1.1, x: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <ChevronLeft size={24} className="text-white" />
+                  </motion.button>
+                  <motion.button
+                    className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleNextImage(e);
+                    }}
+                    whileHover={{ scale: 1.1, x: 2 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <ChevronRight size={24} className="text-white" />
+                  </motion.button>
                 </div>
               </div>
 
@@ -261,33 +319,7 @@ const Projects: React.FC = () => {
                 <span className="text-white text-xl font-light">×</span>
               </motion.button>
 
-              {/* Navigation buttons - Fixed positioning and click handling */}
-              <div className="absolute inset-0 z-20 flex items-center justify-between px-2">
-                <motion.button
-                  className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handlePrevImage(e);
-                  }}
-                  whileHover={{ scale: 1.1, x: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <ChevronLeft size={24} className="text-white" />
-                </motion.button>
-                <motion.button
-                  className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleNextImage(e);
-                  }}
-                  whileHover={{ scale: 1.1, x: 2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <ChevronRight size={24} className="text-white" />
-                </motion.button>
-              </div>
-
-              {/* Image counter and dots */}
+              {/* Simplified counter and dots */}
               <motion.div 
                 className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
                 initial={{ y: 20, opacity: 0 }}
@@ -317,9 +349,19 @@ const Projects: React.FC = () => {
                 </div>
               </motion.div>
 
-              {/* Keyboard navigation hint */}
+              {/* Mobile swipe hint - only shown on mobile */}
               <motion.div 
-                className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/50 text-xs z-20"
+                className="md:hidden absolute bottom-4 left-1/2 -translate-x-1/2 text-white/50 text-xs z-20"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3 }}
+              >
+                Swipe to navigate
+              </motion.div>
+
+              {/* Desktop keyboard hint - only shown on desktop */}
+              <motion.div 
+                className="hidden md:block absolute bottom-4 left-1/2 -translate-x-1/2 text-white/50 text-xs z-20"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
