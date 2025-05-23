@@ -56,15 +56,34 @@ const Projects: React.FC = () => {
   const [activeProject, setActiveProject] = useState<number | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showDemoButton, setShowDemoButton] = useState<number | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Auto-show demo button on mobile after 1 second
+  // Check if device is mobile
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowDemoButton(0); // Show for first project initially
-    }, 1000);
-
-    return () => clearTimeout(timer);
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  // Show demo buttons instantly on mobile
+  useEffect(() => {
+    if (isMobile) {
+      setShowDemoButton(0); // Show for first project
+      const timer = setTimeout(() => {
+        setShowDemoButton(1); // Show for second project
+      }, 500);
+      const timer2 = setTimeout(() => {
+        setShowDemoButton(2); // Show for third project
+      }, 1000);
+      return () => {
+        clearTimeout(timer);
+        clearTimeout(timer2);
+      };
+    }
+  }, [isMobile]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -131,12 +150,12 @@ const Projects: React.FC = () => {
               variants={itemVariants}
               className="project-card bg-black border border-white rounded-lg overflow-hidden transform-gpu relative group"
               whileHover={{ 
-                scale: 1.02,
+                scale: isMobile ? 1 : 1.02,
                 transition: { duration: 0.2 }
               }}
               onClick={() => project.images && setActiveProject(index)}
-              onMouseEnter={() => setShowDemoButton(index)}
-              onMouseLeave={() => setShowDemoButton(null)}
+              onMouseEnter={() => !isMobile && setShowDemoButton(index)}
+              onMouseLeave={() => !isMobile && setShowDemoButton(null)}
             >
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-3 text-white">{project.title}</h3>
@@ -184,7 +203,7 @@ const Projects: React.FC = () => {
                     className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-center justify-center"
                     initial={false}
                     animate={{ 
-                      opacity: showDemoButton === index ? 1 : 0,
+                      opacity: isMobile || showDemoButton === index ? 1 : 0,
                       transition: { duration: 0.2 }
                     }}
                   >
@@ -193,7 +212,7 @@ const Projects: React.FC = () => {
                       initial={{ y: 10, opacity: 0 }}
                       animate={{ 
                         y: 0, 
-                        opacity: showDemoButton === index ? 1 : 0,
+                        opacity: isMobile || showDemoButton === index ? 1 : 0,
                         transition: { duration: 0.2 }
                       }}
                     >
@@ -205,7 +224,7 @@ const Projects: React.FC = () => {
                     className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-center justify-center"
                     initial={false}
                     animate={{ 
-                      opacity: showDemoButton === index ? 1 : 0,
+                      opacity: isMobile || showDemoButton === index ? 1 : 0,
                       transition: { duration: 0.2 }
                     }}
                     onClick={() => {
@@ -217,7 +236,7 @@ const Projects: React.FC = () => {
                       initial={{ y: 10, opacity: 0 }}
                       animate={{ 
                         y: 0, 
-                        opacity: showDemoButton === index ? 1 : 0,
+                        opacity: isMobile || showDemoButton === index ? 1 : 0,
                         transition: { duration: 0.2 }
                       }}
                     >
@@ -270,7 +289,7 @@ const Projects: React.FC = () => {
                 </div>
               </div>
 
-              {/* Simplified Mobile Navigation */}
+              {/* Improved Mobile Navigation */}
               <div className="absolute inset-0 z-20">
                 {/* Swipe areas for mobile */}
                 <div className="absolute inset-y-0 left-0 w-1/3" onClick={(e) => {
@@ -283,9 +302,9 @@ const Projects: React.FC = () => {
                 }} />
 
                 {/* Desktop navigation buttons - hidden on mobile */}
-                <div className="hidden md:flex absolute inset-0 items-center justify-between px-2">
+                <div className="hidden md:flex absolute inset-0 items-center justify-between px-4">
                   <motion.button
-                    className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                    className="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors"
                     onClick={(e) => {
                       e.stopPropagation();
                       handlePrevImage(e);
@@ -296,7 +315,7 @@ const Projects: React.FC = () => {
                     <ChevronLeft size={24} className="text-white" />
                   </motion.button>
                   <motion.button
-                    className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                    className="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors"
                     onClick={(e) => {
                       e.stopPropagation();
                       handleNextImage(e);
@@ -309,9 +328,9 @@ const Projects: React.FC = () => {
                 </div>
               </div>
 
-              {/* Close button */}
+              {/* Close button - moved to top right with more spacing */}
               <motion.button
-                className="absolute top-4 right-4 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                className="absolute top-6 right-6 z-20 w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors"
                 onClick={() => setActiveProject(null)}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
@@ -319,24 +338,24 @@ const Projects: React.FC = () => {
                 <span className="text-white text-xl font-light">×</span>
               </motion.button>
 
-              {/* Simplified counter and dots */}
+              {/* Improved counter and dots with better spacing */}
               <motion.div 
-                className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
+                className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-20"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.2 }}
               >
-                <div className="text-white/80 text-sm font-medium mb-2">
+                <div className="text-white/80 text-sm font-medium">
                   {currentImageIndex + 1} / {projects[activeProject].images.length}
                 </div>
-                <div className="flex gap-2">
+                <div className="flex gap-3">
                   {projects[activeProject].images.map((_, idx) => (
                     <motion.button
                       key={idx}
-                      className={`h-1.5 rounded-full transition-all duration-300 ${
+                      className={`h-2 rounded-full transition-all duration-300 ${
                         idx === currentImageIndex 
-                          ? 'bg-white w-6' 
-                          : 'bg-white/50 w-1.5 hover:bg-white/70'
+                          ? 'bg-white w-8' 
+                          : 'bg-white/50 w-2 hover:bg-white/70'
                       }`}
                       onClick={(e) => {
                         e.stopPropagation();
@@ -351,7 +370,7 @@ const Projects: React.FC = () => {
 
               {/* Mobile swipe hint - only shown on mobile */}
               <motion.div 
-                className="md:hidden absolute bottom-4 left-1/2 -translate-x-1/2 text-white/50 text-xs z-20"
+                className="md:hidden absolute bottom-16 left-1/2 -translate-x-1/2 text-white/50 text-xs z-20"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
@@ -361,7 +380,7 @@ const Projects: React.FC = () => {
 
               {/* Desktop keyboard hint - only shown on desktop */}
               <motion.div 
-                className="hidden md:block absolute bottom-4 left-1/2 -translate-x-1/2 text-white/50 text-xs z-20"
+                className="hidden md:block absolute bottom-16 left-1/2 -translate-x-1/2 text-white/50 text-xs z-20"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
