@@ -32,11 +32,11 @@ const projects: Project[] = [
     ]
   },
   {
-    title: 'AI-Powered Resume Matcher',
-    description: 'AI-Resume Keyword Matcher is a Flask-powered web app that transforms job applications using advanced NLP. Upload your PDF resume and job description to get a highly accurate similarity score with highlighted keywords in under 10 seconds. Enhance your application strength with actionable insights on matching and missing keywords, all within a sleek Bootstrap interface. Seamlessly search jobs via Adzuna API, track progress with an analytics dashboard, and export results as PDFs. Resume Keyword Matcher: your key to unlocking career opportunities.',
-    tags: ['Python', 'AI', 'Flask', 'NLP'],
-    github: 'https://github.com/AbhinavAnand241201/AI-Powered-Resume-Keyword-Matcher',
-    demo: 'https://github.com/AbhinavAnand241201/AI-Powered-Resume-Keyword-Matcher',
+    title: 'GoQuest',
+    description: 'GoQuest is a standalone Go CLI tool and library that orchestrates concurrent task workflows defined in a simple Go-based script. It allows users to define tasks (e.g., HTTP requests, computations) and execute them in parallel with a configurable worker pool, leveraging Go\'s concurrency model (goroutines and channels). Try it out by following the installation instructions in the GitHub README!',
+    tags: ['Go', 'Concurrency', 'CLI', 'DevOps'],
+    github: 'https://github.com/AbhinavAnand241201/GoQuest',
+    demo: 'https://github.com/AbhinavAnand241201/GoQuest',
   },
   {
     title: 'PhoneSaver',
@@ -119,7 +119,7 @@ const Projects: React.FC = () => {
             <motion.div
               key={index}
               variants={itemVariants}
-              className="project-card bg-black border border-white rounded-lg overflow-hidden transform-gpu relative"
+              className="project-card bg-black border border-white rounded-lg overflow-hidden transform-gpu relative group"
               whileHover={{ 
                 scale: 1.02,
                 transition: { duration: 0.2 }
@@ -141,13 +141,13 @@ const Projects: React.FC = () => {
                     </motion.span>
                   ))}
                 </div>
-                <div className="flex gap-4">
+                <div className="flex gap-4 relative z-10">
                   <motion.a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-white/80"
-                    whileHover={{ scale: 1.05, color: "#fff" }}
+                    className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
+                    whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.2 }}
                     onClick={(e) => e.stopPropagation()}
                   >
@@ -158,8 +158,8 @@ const Projects: React.FC = () => {
                     href={project.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-white/80"
-                    whileHover={{ scale: 1.05, color: "#fff" }}
+                    className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
+                    whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.2 }}
                     onClick={(e) => e.stopPropagation()}
                   >
@@ -167,69 +167,189 @@ const Projects: React.FC = () => {
                     <span>Visit</span>
                   </motion.a>
                 </div>
+                {project.images ? (
+                  <motion.div 
+                    className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-200 flex items-center justify-center"
+                    initial={false}
+                    animate={{ opacity: 0 }}
+                    whileHover={{ opacity: 1 }}
+                  >
+                    <motion.span 
+                      className="text-white text-sm font-medium px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm"
+                      initial={{ y: 10, opacity: 0 }}
+                      whileHover={{ y: 0, opacity: 1 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      View Demo
+                    </motion.span>
+                  </motion.div>
+                ) : (
+                  <motion.div 
+                    className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-200 flex items-center justify-center"
+                    initial={false}
+                    animate={{ opacity: 0 }}
+                    whileHover={{ opacity: 1 }}
+                    onClick={() => {
+                      alert('Rendering Error: Please check your internet connection and try again.');
+                    }}
+                  >
+                    <motion.span 
+                      className="text-white text-sm font-medium px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm cursor-pointer"
+                      initial={{ y: 10, opacity: 0 }}
+                      whileHover={{ y: 0, opacity: 1 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      View Demo
+                    </motion.span>
+                  </motion.div>
+                )}
               </div>
             </motion.div>
           ))}
         </motion.div>
       </div>
 
-      {/* Image Carousel Modal */}
+      {/* Improved Image Carousel Modal */}
       <AnimatePresence>
         {activeProject !== null && projects[activeProject].images && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/95 backdrop-blur-sm z-50 flex items-center justify-center p-4"
             onClick={() => setActiveProject(null)}
           >
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
+              initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="relative max-w-4xl w-full"
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="relative w-full max-w-[280px] md:max-w-[320px] bg-black rounded-[40px] overflow-hidden shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <button
-                className="absolute -left-12 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 transition-colors"
-                onClick={handlePrevImage}
-              >
-                <ChevronLeft size={40} />
-              </button>
-              <motion.img
-                key={currentImageIndex}
-                src={projects[activeProject].images[currentImageIndex]}
-                alt={`Screenshot ${currentImageIndex + 1}`}
-                className="w-full h-auto rounded-lg shadow-2xl"
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -100 }}
-                transition={{ duration: 0.3 }}
-              />
-              <button
-                className="absolute -right-12 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 transition-colors"
-                onClick={handleNextImage}
-              >
-                <ChevronRight size={40} />
-              </button>
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-                {projects[activeProject].images.map((_, idx) => (
-                  <button
-                    key={idx}
-                    className={`w-2 h-2 rounded-full transition-colors ${
-                      idx === currentImageIndex ? 'bg-white' : 'bg-white/50'
-                    }`}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setCurrentImageIndex(idx);
-                    }}
-                  />
-                ))}
+              {/* iPhone frame */}
+              <div className="relative w-full pt-[216.67%]">
+                <div className="absolute inset-0">
+                  {/* Notch */}
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[40%] h-[5%] bg-black rounded-b-[20px] z-10" />
+                  
+                  {/* Image container */}
+                  <div className="absolute inset-[10%] rounded-[30px] overflow-hidden">
+                    <motion.img
+                      key={currentImageIndex}
+                      src={projects[activeProject].images[currentImageIndex]}
+                      alt={`Screenshot ${currentImageIndex + 1}`}
+                      className="w-full h-full object-cover"
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ 
+                        duration: 0.4,
+                        ease: [0.4, 0, 0.2, 1]
+                      }}
+                    />
+                  </div>
+                </div>
               </div>
+
+              {/* Close button */}
+              <motion.button
+                className="absolute top-4 right-4 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                onClick={() => setActiveProject(null)}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span className="text-white text-xl font-light">×</span>
+              </motion.button>
+
+              {/* Navigation buttons - Fixed positioning and click handling */}
+              <div className="absolute inset-0 z-20 flex items-center justify-between px-2">
+                <motion.button
+                  className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handlePrevImage(e);
+                  }}
+                  whileHover={{ scale: 1.1, x: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <ChevronLeft size={24} className="text-white" />
+                </motion.button>
+                <motion.button
+                  className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleNextImage(e);
+                  }}
+                  whileHover={{ scale: 1.1, x: 2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <ChevronRight size={24} className="text-white" />
+                </motion.button>
+              </div>
+
+              {/* Image counter and dots */}
+              <motion.div 
+                className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.2 }}
+              >
+                <div className="text-white/80 text-sm font-medium mb-2">
+                  {currentImageIndex + 1} / {projects[activeProject].images.length}
+                </div>
+                <div className="flex gap-2">
+                  {projects[activeProject].images.map((_, idx) => (
+                    <motion.button
+                      key={idx}
+                      className={`h-1.5 rounded-full transition-all duration-300 ${
+                        idx === currentImageIndex 
+                          ? 'bg-white w-6' 
+                          : 'bg-white/50 w-1.5 hover:bg-white/70'
+                      }`}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setCurrentImageIndex(idx);
+                      }}
+                      whileHover={{ scale: 1.2 }}
+                      whileTap={{ scale: 0.9 }}
+                    />
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Keyboard navigation hint */}
+              <motion.div 
+                className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/50 text-xs z-20"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3 }}
+              >
+                Use ← → arrow keys to navigate
+              </motion.div>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* See More Projects Button */}
+      <motion.div 
+        className="mt-12 text-center"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+      >
+        <motion.a
+          href="https://github.com/AbhinavAnand241201"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <Github size={20} />
+          <span>See More Projects</span>
+        </motion.a>
+      </motion.div>
     </section>
   );
 };

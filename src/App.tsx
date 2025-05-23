@@ -90,25 +90,25 @@ function App() {
       
       <main ref={scrollRef} data-scroll-container className="relative">
         <div data-scroll-section>
-          <Hero />
+        <Hero />
         </div>
         <div data-scroll-section>
-          <About />
+        <About />
         </div>
         <div data-scroll-section>
-          <Projects />
+        <Projects />
         </div>
         <div data-scroll-section>
-          <LeetCode />
+        <LeetCode />
         </div>
         <div data-scroll-section>
-          <Contributions />
+        <Contributions />
         </div>
         <div data-scroll-section>
-          <RecruiterDashboard />
+        <RecruiterDashboard />
         </div>
         <div data-scroll-section>
-          <Contact />
+        <Contact />
         </div>
       </main>
       
