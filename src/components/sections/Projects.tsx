@@ -51,12 +51,7 @@ const projects: Project[] = [
     description: 'WanderWise is an intelligent travel companion that revolutionizes trip planning using Gemini AI. It provides personalized travel recommendations, real-time navigation with Google Maps, and smart itinerary generation. The app suggests points of interest, estimates travel times, and helps users discover hidden gems at their destination, making every journey seamless and memorable.',
     tags: ['Next.js', 'Gemini AI', 'Google Maps API', 'Firebase', 'TypeScript'],
     github: 'https://github.com/AbhinavAnand241201/wanderWise',
-    demo: 'https://wander-wise-1mse95y80-abhinav-anands-projects-05cac868.vercel.app',
-    images: [
-      '/assets/wanderwise-1.jpg',
-      '/assets/wanderwise-2.jpg',
-      '/assets/wanderwise-3.jpg'
-    ]
+    demo: 'https://wander-wise-1mse95y80-abhinav-anands-projects-05cac868.vercel.app'
   }
 ];
 
