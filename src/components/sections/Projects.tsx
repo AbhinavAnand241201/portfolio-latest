@@ -40,11 +40,11 @@ const projects: Project[] = [
     demo: 'https://github.com/AbhinavAnand241201/GoQuest',
   },
   {
-    title: 'PhoneSaver',
-    description: 'PhoneSaver is a modern contact management app built with SwiftUI and Go (Gin framework). Features include contact tagging, one-tap communication, scheduled reminders, encrypted contacts, and cloud backups via Firebase. The app uses MySQL for secure data storage and integrates Firebase for backup functionality. With a clean, responsive UI and dark mode support, it provides a seamless way to manage and organize your contacts efficiently.',
-    tags: ['Swift', 'SwiftUI', 'Go', 'MySQL', 'Firebase'],
-    github: 'https://github.com/AbhinavAnand241201/phoneSaver',
-    demo: 'https://github.com/AbhinavAnand241201/phoneSaver',
+    title: 'Fiscal Planner',
+    description: 'Fiscal Planner is an AI-powered financial advisor and budget management application. It helps users manage their finances, track expenses, and receive personalized financial advice. The app uses AI to analyze spending patterns and provide intelligent recommendations for better budget management and financial planning.',
+    tags: ['Next.js', 'Firebase', 'GenKit', 'Gemini AI', 'TypeScript'],
+    github: 'https://github.com/AbhinavAnand241201/fiscal-Planner',
+    demo: 'https://fiscal-planner.vercel.app',
   }
 ];
 
@@ -99,8 +99,8 @@ const Projects: React.FC = () => {
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
-      y: 0, 
-      opacity: 1,
+          y: 0, 
+          opacity: 1,
       transition: {
         duration: 0.5,
         ease: "easeOut"
@@ -130,7 +130,7 @@ const Projects: React.FC = () => {
       if (activeProject !== null && projects[activeProject].images) {
         const project = projects[activeProject];
         setCurrentImageIndex((prev) => (prev + 1) % project.images!.length);
-      }
+    }
     },
     onSwipedRight: () => {
       if (activeProject !== null && projects[activeProject].images) {
