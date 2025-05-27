@@ -40,8 +40,8 @@ const projects: Project[] = [
     demo: 'https://github.com/AbhinavAnand241201/GoQuest',
   },
   {
-    title: 'Fiscal Planner',
-    description: 'Fiscal Planner is an AI-powered financial advisor and budget management application. It helps users manage their finances, track expenses, and receive personalized financial advice. The app uses AI to analyze spending patterns and provide intelligent recommendations for better budget management and financial planning.',
+    title: 'Fiscal Compass',
+    description: 'Fiscal Compass is an AI-powered financial advisor and budget management application. It helps users manage their finances, track expenses, and receive personalized financial advice. The app uses AI to analyze spending patterns and provide intelligent recommendations for better budget management and financial planning.',
     tags: ['Next.js', 'Firebase', 'GenKit', 'Gemini AI', 'TypeScript'],
     github: 'https://github.com/AbhinavAnand241201/fiscal-Planner',
     demo: 'https://fiscal-planner.vercel.app',
@@ -238,32 +238,30 @@ const Projects: React.FC = () => {
                     </motion.span>
                   </motion.div>
                 ) : (
-                  // Only show this on desktop
-                  !isMobile && (
-                    <motion.div 
-                      className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-center justify-center"
-                      initial={false}
+                  // Show direct link for projects with demo URLs
+                  <motion.a 
+                    href={project.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-center justify-center no-underline"
+                    initial={false}
+                    animate={{ 
+                      opacity: isMobile || showDemoButton === index ? 1 : 0,
+                      transition: { duration: 0.2 }
+                    }}
+                  >
+                    <motion.span 
+                      className="text-white text-sm font-medium px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm cursor-pointer"
+                      initial={{ y: 10, opacity: 0 }}
                       animate={{ 
-                        opacity: showDemoButton === index ? 1 : 0,
+                        y: 0, 
+                        opacity: isMobile || showDemoButton === index ? 1 : 0,
                         transition: { duration: 0.2 }
                       }}
-                      onClick={() => {
-                        alert('Rendering Error: Please check your internet connection and try again.');
-                      }}
                     >
-                      <motion.span 
-                        className="text-white text-sm font-medium px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm cursor-pointer"
-                        initial={{ y: 10, opacity: 0 }}
-                        animate={{ 
-                          y: 0, 
-                          opacity: showDemoButton === index ? 1 : 0,
-                          transition: { duration: 0.2 }
-                        }}
-                      >
-                        View Demo
-                      </motion.span>
-                    </motion.div>
-                  )
+                      View Demo
+                    </motion.span>
+                  </motion.a>
                 )}
               </div>
             </motion.div>
