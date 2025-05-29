@@ -21,14 +21,14 @@ const projects: Project[] = [
     github: 'https://github.com/AbhinavAnand241201/pocketButtler',
     demo: 'https://github.com/AbhinavAnand241201/pocketButtler',
     images: [
-      '/assets1/Home-new.png',
+      '/assets1/Home.png',
       '/assets1/Additems.png',
       '/assets1/History.png',
       '/assets1/MapView.png',
       '/assets1/PanicMode.png',
       '/assets1/AccountDetails.png',
       '/assets1/Add.png',
-      '/assets1/AddMembers-new.png',
+      
       '/assets1/AddMemberss.png',
       '/assets1/Detials.png',
       '/assets1/ItemDetails.png',
@@ -159,21 +159,27 @@ const Projects: React.FC = () => {
     }
   };
 
-  // Swipe handlers for mobile
+  // Enhanced swipe handlers for mobile with better touch experience
   const swipeHandlers = useSwipeable({
-    onSwipedLeft: () => {
+    onSwipedLeft: (e) => {
+      e.event.stopPropagation();
       if (activeProject !== null && projects[activeProject].images) {
         const project = projects[activeProject];
         setCurrentImageIndex((prev) => (prev + 1) % project.images!.length);
-    }
+      }
     },
-    onSwipedRight: () => {
+    onSwipedRight: (e) => {
+      e.event.stopPropagation();
       if (activeProject !== null && projects[activeProject].images) {
         const project = projects[activeProject];
         setCurrentImageIndex((prev) => (prev - 1 + project.images!.length) % project.images!.length);
       }
     },
-    trackMouse: false
+    trackMouse: false,
+    preventScrollOnSwipe: true,
+    swipeDuration: 250,
+    touchEventOptions: { passive: true },
+    delta: 10, // min distance(px) before a swipe starts
   });
 
   return (
@@ -435,8 +441,11 @@ const Projects: React.FC = () => {
                 </motion.button>
               </div>
 
-              {/* Mobile Navigation - Touch Swipe */}
-              <div className="md:hidden absolute inset-0 z-20" />
+                {/* Mobile Navigation - Enhanced Touch Target */}
+                <div 
+                  className="md:hidden absolute inset-0 z-20 touch-none" 
+                  {...swipeHandlers}
+                />
             </div>
           </motion.div>
         )}
