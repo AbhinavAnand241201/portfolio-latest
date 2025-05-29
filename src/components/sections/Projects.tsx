@@ -347,29 +347,29 @@ const Projects: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Navigation Arrows - Desktop */}
-                <div className="hidden md:flex absolute left-0 right-0 top-1/2 -translate-y-1/2 z-20 justify-between px-2">
+                {/* Navigation Arrows - Desktop - Enhanced */}
+                <div className="hidden md:flex absolute left-0 right-0 top-1/2 -translate-y-1/2 z-20 justify-between px-4">
                   <motion.button
-                    className="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors -ml-16"
+                    className="w-14 h-14 flex items-center justify-center rounded-full bg-white hover:bg-gray-100 transition-all shadow-lg -ml-20"
                     onClick={(e) => {
                       e.stopPropagation();
                       handlePrevImage(e);
                     }}
-                    whileHover={{ scale: 1.1 }}
+                    whileHover={{ scale: 1.1, x: -5 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <ChevronLeft size={24} className="text-white" />
+                    <ChevronLeft size={32} className="text-black font-bold" strokeWidth={2.5} />
                   </motion.button>
                   <motion.button
-                    className="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors -mr-16"
+                    className="w-14 h-14 flex items-center justify-center rounded-full bg-white hover:bg-gray-100 transition-all shadow-lg -mr-20"
                     onClick={(e) => {
                       e.stopPropagation();
                       handleNextImage(e);
                     }}
-                    whileHover={{ scale: 1.1 }}
+                    whileHover={{ scale: 1.1, x: 5 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <ChevronRight size={24} className="text-white" />
+                    <ChevronRight size={32} className="text-black font-bold" strokeWidth={2.5} />
                   </motion.button>
                 </div>
               </div>
