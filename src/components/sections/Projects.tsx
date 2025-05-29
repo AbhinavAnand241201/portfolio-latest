@@ -327,21 +327,21 @@ const Projects: React.FC = () => {
                   {/* Notch */}
                   <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[40%] h-[5%] bg-black rounded-b-[20px] z-10" />
                   
-                  {/* Image container with minimal borders */}
+                  {/* Image container with slight crop */}
                   <div className="absolute inset-0 overflow-hidden">
-                    <motion.div 
-                      className="w-full h-full flex items-center justify-center"
-                    >
-                      <motion.img
-                        key={currentImageIndex}
-                        src={projects[activeProject].images[currentImageIndex]}
-                        alt={`Screenshot ${currentImageIndex + 1}`}
-                        className="w-full h-full object-contain"
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.95 }}
-                        transition={{ duration: 0.4 }}
-                      />
+                    <motion.div className="w-full h-full flex items-center justify-center">
+                      <div className="w-[95%] h-[95%] overflow-hidden flex items-center justify-center">
+                        <motion.img
+                          key={currentImageIndex}
+                          src={projects[activeProject].images[currentImageIndex]}
+                          alt={`Screenshot ${currentImageIndex + 1}`}
+                          className="w-[105%] h-[105%] object-cover"
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0.95 }}
+                          transition={{ duration: 0.4 }}
+                        />
+                      </div>
                     </motion.div>
                   </div>
                 </div>
