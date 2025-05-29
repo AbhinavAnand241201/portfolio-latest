@@ -327,17 +327,16 @@ const Projects: React.FC = () => {
                   {/* Notch */}
                   <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[40%] h-[5%] bg-black rounded-b-[20px] z-10" />
                   
-                  {/* Image container with adjusted padding for better framing */}
-                  <div className="absolute inset-[5%] rounded-[30px] overflow-hidden bg-black">
+                  {/* Image container with minimal borders */}
+                  <div className="absolute inset-0 overflow-hidden">
                     <motion.div 
-                      className="w-full h-full flex items-center justify-center p-1"
-                      style={{ backgroundColor: '#000' }}
+                      className="w-full h-full flex items-center justify-center"
                     >
                       <motion.img
                         key={currentImageIndex}
                         src={projects[activeProject].images[currentImageIndex]}
                         alt={`Screenshot ${currentImageIndex + 1}`}
-                        className="max-w-[90%] max-h-[90%] object-contain rounded-[20px] shadow-lg"
+                        className="w-full h-full object-contain"
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.95 }}
