@@ -25,7 +25,20 @@ const projects: Project[] = [
       '/assets1/Additems.png',
       '/assets1/History.png',
       '/assets1/MapView.png',
-      '/assets1/PanicMode.png'
+      '/assets1/PanicMode.png',
+      '/assets1/AccountDetails.png',
+      '/assets1/Add.png',
+      '/assets1/AddMembers.png',
+      '/assets1/Detials.png',
+      '/assets1/ItemDetails.png',
+      '/assets1/Login.png',
+      '/assets1/Settings.png',
+      '/assets1/Share.png',
+      '/assets1/SignUp.png',
+      '/assets1/VoiceLogin.png',
+      '/assets1/addCategories.png',
+      '/assets1/categories.png',
+      '/assets1/forgotPassword.png'
     ]
   },
   {
@@ -314,18 +327,23 @@ const Projects: React.FC = () => {
                   {/* Notch */}
                   <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[40%] h-[5%] bg-black rounded-b-[20px] z-10" />
                   
-                  {/* Image container */}
-                  <div className="absolute inset-[10%] rounded-[30px] overflow-hidden">
-                    <motion.img
-                      key={currentImageIndex}
-                      src={projects[activeProject].images[currentImageIndex]}
-                      alt={`Screenshot ${currentImageIndex + 1}`}
-                      className="w-full h-full object-cover"
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.95 }}
-                      transition={{ duration: 0.4 }}
-                    />
+                  {/* Image container with adjusted padding for better framing */}
+                  <div className="absolute inset-[5%] rounded-[30px] overflow-hidden bg-black">
+                    <motion.div 
+                      className="w-full h-full flex items-center justify-center p-1"
+                      style={{ backgroundColor: '#000' }}
+                    >
+                      <motion.img
+                        key={currentImageIndex}
+                        src={projects[activeProject].images[currentImageIndex]}
+                        alt={`Screenshot ${currentImageIndex + 1}`}
+                        className="max-w-[90%] max-h-[90%] object-contain rounded-[20px] shadow-lg"
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        transition={{ duration: 0.4 }}
+                      />
+                    </motion.div>
                   </div>
                 </div>
               </div>
