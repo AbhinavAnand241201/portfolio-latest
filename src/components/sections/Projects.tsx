@@ -15,6 +15,41 @@ interface Project {
 
 const projects: Project[] = [
   {
+    title: 'Pocket Butler - iOS',
+    description: 'Pocket Butler is an iOS app that helps you keep track of your everyday items. It allows you to quickly log where you placed items and retrieve that information in seconds when you need them. Features include voice/one-tap logging, smart alerts, shared household log, favorites & history, and panic mode to help locate nearby items.',
+    tags: ['Swift', 'SwiftUI', 'Node.js', 'MongoDB', 'JWT', 'APNs'],
+    github: 'https://github.com/AbhinavAnand241201/pocketButtler',
+    demo: 'https://github.com/AbhinavAnand241201/pocketButtler',
+    images: [
+      '/assets1/pocket_buttler_1.png',
+      '/assets1/pocket_buttler_2.png',
+      '/assets1/pocket_buttler_3.png',
+      '/assets1/pocket_buttler_4.png',
+      '/assets1/pocket_buttler_5.png'
+    ]
+  },
+  {
+    title: 'WanderWise',
+    description: 'WanderWise is an intelligent travel companion that revolutionizes trip planning using Gemini AI. It provides personalized travel recommendations, real-time navigation with Google Maps, and smart itinerary generation. The app suggests points of interest, estimates travel times, and helps users discover hidden gems at their destination, making every journey seamless and memorable.',
+    tags: ['Next.js', 'Gemini AI', 'Google Maps API', 'Firebase', 'TypeScript'],
+    github: 'https://github.com/AbhinavAnand241201/wanderWise',
+    demo: 'https://wander-wise-1mse95y80-abhinav-anands-projects-05cac868.vercel.app'
+  },
+  {
+    title: 'Fiscal Compass',
+    description: 'Fiscal Compass is an AI-powered financial advisor and budget management application. It helps users manage their finances, track expenses, and receive personalized financial advice. The app uses AI to analyze spending patterns and provide intelligent recommendations for better budget management and financial planning.',
+    tags: ['Next.js', 'Firebase', 'GenKit', 'Gemini AI', 'TypeScript'],
+    github: 'https://github.com/AbhinavAnand241201/fiscal-Planner',
+    demo: 'https://fiscal-planner.vercel.app',
+  },
+  {
+    title: 'GoQuest',
+    description: 'GoQuest is a standalone Go CLI tool and library that orchestrates concurrent task workflows defined in a simple Go-based script. It allows users to define tasks (e.g., HTTP requests, computations) and execute them in parallel with a configurable worker pool, leveraging Go\'s concurrency model (goroutines and channels). Try it out by following the installation instructions in the GitHub README!',
+    tags: ['Go', 'Concurrency', 'CLI', 'DevOps'],
+    github: 'https://github.com/AbhinavAnand241201/GoQuest',
+    demo: 'https://github.com/AbhinavAnand241201/GoQuest',
+  },
+  {
     title: 'Vibe_LINK',
     description: 'Vibe_LINK is a next-generation dating application designed specifically for Gen Z users, focusing on creating meaningful connections through location-based interactions and ephemeral content sharing. The platform encourages users to meet in real life by highlighting nearby potential matches and facilitating spontaneous encounters through its innovative "Moments" feature.',
     tags: ['Swift', 'SwiftUI', 'Node.js', 'MongoDB', 'Firebase'],
@@ -31,27 +66,6 @@ const projects: Project[] = [
       '/assets/loading.png',
       '/assets/error.png'
     ]
-  },
-  {
-    title: 'GoQuest',
-    description: 'GoQuest is a standalone Go CLI tool and library that orchestrates concurrent task workflows defined in a simple Go-based script. It allows users to define tasks (e.g., HTTP requests, computations) and execute them in parallel with a configurable worker pool, leveraging Go\'s concurrency model (goroutines and channels). Try it out by following the installation instructions in the GitHub README!',
-    tags: ['Go', 'Concurrency', 'CLI', 'DevOps'],
-    github: 'https://github.com/AbhinavAnand241201/GoQuest',
-    demo: 'https://github.com/AbhinavAnand241201/GoQuest',
-  },
-  {
-    title: 'Fiscal Compass',
-    description: 'Fiscal Compass is an AI-powered financial advisor and budget management application. It helps users manage their finances, track expenses, and receive personalized financial advice. The app uses AI to analyze spending patterns and provide intelligent recommendations for better budget management and financial planning.',
-    tags: ['Next.js', 'Firebase', 'GenKit', 'Gemini AI', 'TypeScript'],
-    github: 'https://github.com/AbhinavAnand241201/fiscal-Planner',
-    demo: 'https://fiscal-planner.vercel.app',
-  },
-  {
-    title: 'WanderWise',
-    description: 'WanderWise is an intelligent travel companion that revolutionizes trip planning using Gemini AI. It provides personalized travel recommendations, real-time navigation with Google Maps, and smart itinerary generation. The app suggests points of interest, estimates travel times, and helps users discover hidden gems at their destination, making every journey seamless and memorable.',
-    tags: ['Next.js', 'Gemini AI', 'Google Maps API', 'Firebase', 'TypeScript'],
-    github: 'https://github.com/AbhinavAnand241201/wanderWise',
-    demo: 'https://wander-wise-1mse95y80-abhinav-anands-projects-05cac868.vercel.app'
   }
 ];
 
