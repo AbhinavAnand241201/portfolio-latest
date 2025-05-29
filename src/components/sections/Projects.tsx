@@ -321,60 +321,61 @@ const Projects: React.FC = () => {
               onClick={(e) => e.stopPropagation()}
               {...swipeHandlers}
             >
-              {/* iPhone frame */}
-              <div className="relative w-full pt-[216.67%]">
-                <div className="absolute inset-0">
-                  {/* Notch */}
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[40%] h-[5%] bg-black rounded-b-[20px] z-10" />
-                  
-                  {/* Image container with slight crop */}
-                  <div className="absolute inset-0 overflow-hidden">
-                    <motion.div className="w-full h-full flex items-center justify-center">
-                      <div className="w-[95%] h-[95%] overflow-hidden flex items-center justify-center">
-                        <motion.img
-                          key={currentImageIndex}
-                          src={projects[activeProject].images[currentImageIndex]}
-                          alt={`Screenshot ${currentImageIndex + 1}`}
-                          className="w-[105%] h-[105%] object-cover"
-                          initial={{ opacity: 0, scale: 0.95 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          exit={{ opacity: 0, scale: 0.95 }}
-                          transition={{ duration: 0.4 }}
-                        />
-                      </div>
-                    </motion.div>
+              <div className="relative w-full max-w-[320px] mx-auto">
+                <div className="relative w-full pt-[216.67%]">
+                  <div className="absolute inset-0">
+                    {/* Notch */}
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[40%] h-[5%] bg-black rounded-b-[20px] z-10" />
+                    
+                    {/* Image container with slight crop */}
+                    <div className="absolute inset-0 overflow-hidden">
+                      <motion.div className="w-full h-full flex items-center justify-center">
+                        <div className="w-[95%] h-[95%] overflow-hidden flex items-center justify-center">
+                          <motion.img
+                            key={currentImageIndex}
+                            src={projects[activeProject].images[currentImageIndex]}
+                            alt={`Screenshot ${currentImageIndex + 1}`}
+                            className="w-[105%] h-[105%] object-cover"
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.95 }}
+                            transition={{ duration: 0.4 }}
+                          />
+                        </div>
+                      </motion.div>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Improved Mobile Navigation */}
-              <div className="absolute inset-0 z-20">
-                {/* Desktop navigation buttons - hidden on mobile */}
-                <div className="hidden md:flex absolute inset-0 items-center justify-between px-4">
+                {/* Navigation Arrows - Desktop */}
+                <div className="hidden md:flex absolute left-0 right-0 top-1/2 -translate-y-1/2 z-20 justify-between px-2">
                   <motion.button
-                    className="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                    className="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors -ml-16"
                     onClick={(e) => {
                       e.stopPropagation();
                       handlePrevImage(e);
                     }}
-                    whileHover={{ scale: 1.1, x: -2 }}
+                    whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                   >
                     <ChevronLeft size={24} className="text-white" />
                   </motion.button>
                   <motion.button
-                    className="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                    className="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors -mr-16"
                     onClick={(e) => {
                       e.stopPropagation();
                       handleNextImage(e);
                     }}
-                    whileHover={{ scale: 1.1, x: 2 }}
+                    whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                   >
                     <ChevronRight size={24} className="text-white" />
                   </motion.button>
                 </div>
               </div>
+
+              {/* Mobile Navigation - Touch Swipe */}
+              <div className="md:hidden absolute inset-0 z-20" {...swipeHandlers} />
 
               {/* Close button - moved to top right with more spacing */}
               <motion.button
