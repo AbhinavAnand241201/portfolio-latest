@@ -29,6 +29,7 @@ const projects: Project[] = [
       '/assets1/AccountDetails.png',
       '/assets1/Add.png',
       '/assets1/AddMembers.png',
+      '/assets1/AddMemberss.png',  // New image added
       '/assets1/Detials.png',
       '/assets1/ItemDetails.png',
       '/assets1/Login.png',
@@ -38,7 +39,8 @@ const projects: Project[] = [
       '/assets1/VoiceLogin.png',
       '/assets1/addCategories.png',
       '/assets1/categories.png',
-      '/assets1/forgotPassword.png'
+      '/assets1/forgotPassword.png',
+      '/assets1/Home.png'  // Additional Home.png added as per user's request
     ]
   },
   {
