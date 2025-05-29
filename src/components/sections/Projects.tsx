@@ -21,11 +21,11 @@ const projects: Project[] = [
     github: 'https://github.com/AbhinavAnand241201/pocketButtler',
     demo: 'https://github.com/AbhinavAnand241201/pocketButtler',
     images: [
-      '/assets1/pocket_buttler_1.png',
-      '/assets1/pocket_buttler_2.png',
-      '/assets1/pocket_buttler_3.png',
-      '/assets1/pocket_buttler_4.png',
-      '/assets1/pocket_buttler_5.png'
+      '/assets1/Home.png',
+      '/assets1/Additems.png',
+      '/assets1/History.png',
+      '/assets1/MapView.png',
+      '/assets1/PanicMode.png'
     ]
   },
   {
