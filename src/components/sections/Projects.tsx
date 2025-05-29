@@ -313,15 +313,15 @@ const Projects: React.FC = () => {
             className="fixed inset-0 bg-black/95 backdrop-blur-sm z-50 flex items-center justify-center p-4"
             onClick={() => setActiveProject(null)}
           >
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              className="relative w-full max-w-[280px] md:max-w-[320px] bg-black rounded-[40px] overflow-hidden shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
-              {...swipeHandlers}
-            >
-              <div className="relative w-full max-w-[320px] mx-auto">
+            <div className="relative w-full max-w-[320px] mx-auto">
+              <motion.div
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.95, opacity: 0 }}
+                className="relative w-full bg-black rounded-[40px] overflow-hidden shadow-2xl"
+                onClick={(e) => e.stopPropagation()}
+                {...swipeHandlers}
+              >
                 <div className="relative w-full pt-[216.67%]">
                   <div className="absolute inset-0">
                     {/* Notch */}
@@ -347,96 +347,96 @@ const Projects: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Navigation Arrows - Desktop - Enhanced */}
-                <div className="hidden md:flex absolute left-0 right-0 top-1/2 -translate-y-1/2 z-20 justify-between px-4">
-                  <motion.button
-                    className="w-14 h-14 flex items-center justify-center rounded-full bg-white hover:bg-gray-100 transition-all shadow-lg -ml-20"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handlePrevImage(e);
-                    }}
-                    whileHover={{ scale: 1.1, x: -5 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <ChevronLeft size={32} className="text-black font-bold" strokeWidth={2.5} />
-                  </motion.button>
-                  <motion.button
-                    className="w-14 h-14 flex items-center justify-center rounded-full bg-white hover:bg-gray-100 transition-all shadow-lg -mr-20"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleNextImage(e);
-                    }}
-                    whileHover={{ scale: 1.1, x: 5 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <ChevronRight size={32} className="text-black font-bold" strokeWidth={2.5} />
-                  </motion.button>
-                </div>
+                {/* Close button */}
+                <motion.button
+                  className="absolute top-6 right-6 z-30 w-10 h-10 flex items-center justify-center rounded-full bg-white/90 hover:bg-white transition-colors shadow-lg"
+                  onClick={() => setActiveProject(null)}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <span className="text-black text-xl font-medium">×</span>
+                </motion.button>
+
+                {/* Image counter and dots */}
+                <motion.div 
+                  className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-30"
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.2 }}
+                >
+                  <div className="text-white/80 text-sm font-medium">
+                    {currentImageIndex + 1} / {projects[activeProject].images.length}
+                  </div>
+                  <div className="flex gap-3">
+                    {projects[activeProject].images.map((_, idx) => (
+                      <motion.button
+                        key={idx}
+                        className={`h-2 rounded-full transition-all duration-300 ${
+                          idx === currentImageIndex 
+                            ? 'bg-white w-8' 
+                            : 'bg-white/50 w-2 hover:bg-white/70'
+                        }`}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setCurrentImageIndex(idx);
+                        }}
+                        whileHover={{ scale: 1.2 }}
+                        whileTap={{ scale: 0.9 }}
+                      />
+                    ))}
+                  </div>
+                </motion.div>
+
+                {/* Mobile swipe hint - only shown on mobile */}
+                <motion.div 
+                  className="md:hidden absolute bottom-16 left-1/2 -translate-x-1/2 text-white/50 text-xs z-20"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  Swipe to navigate
+                </motion.div>
+
+                {/* Desktop keyboard hint - only shown on desktop */}
+                <motion.div 
+                  className="hidden md:block absolute bottom-16 left-1/2 -translate-x-1/2 text-white/50 text-xs z-20"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  Use ← → arrow keys to navigate
+                </motion.div>
+              </motion.div>
+
+              {/* Navigation Arrows - Outside the phone frame */}
+              <div className="hidden md:flex absolute left-0 right-0 top-1/2 -translate-y-1/2 z-40 justify-between w-[120%] -mx-[10%]">
+                <motion.button
+                  className="w-14 h-14 flex items-center justify-center rounded-full bg-white hover:bg-gray-100 transition-all shadow-lg"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handlePrevImage(e);
+                  }}
+                  whileHover={{ scale: 1.1, x: -5 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <ChevronLeft size={32} className="text-black font-bold" strokeWidth={2.5} />
+                </motion.button>
+                <motion.button
+                  className="w-14 h-14 flex items-center justify-center rounded-full bg-white hover:bg-gray-100 transition-all shadow-lg"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleNextImage(e);
+                  }}
+                  whileHover={{ scale: 1.1, x: 5 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <ChevronRight size={32} className="text-black font-bold" strokeWidth={2.5} />
+                </motion.button>
               </div>
 
               {/* Mobile Navigation - Touch Swipe */}
-              <div className="md:hidden absolute inset-0 z-20" {...swipeHandlers} />
-
-              {/* Close button - moved to top right with more spacing */}
-              <motion.button
-                className="absolute top-6 right-6 z-20 w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-                onClick={() => setActiveProject(null)}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span className="text-white text-xl font-light">×</span>
-              </motion.button>
-
-              {/* Improved counter and dots with better spacing */}
-              <motion.div 
-                className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-20"
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.2 }}
-              >
-                <div className="text-white/80 text-sm font-medium">
-                  {currentImageIndex + 1} / {projects[activeProject].images.length}
-                </div>
-                <div className="flex gap-3">
-                  {projects[activeProject].images.map((_, idx) => (
-                    <motion.button
-                      key={idx}
-                      className={`h-2 rounded-full transition-all duration-300 ${
-                        idx === currentImageIndex 
-                          ? 'bg-white w-8' 
-                          : 'bg-white/50 w-2 hover:bg-white/70'
-                      }`}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setCurrentImageIndex(idx);
-                      }}
-                      whileHover={{ scale: 1.2 }}
-                      whileTap={{ scale: 0.9 }}
-                    />
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* Mobile swipe hint - only shown on mobile */}
-              <motion.div 
-                className="md:hidden absolute bottom-16 left-1/2 -translate-x-1/2 text-white/50 text-xs z-20"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3 }}
-              >
-                Swipe to navigate
-              </motion.div>
-
-              {/* Desktop keyboard hint - only shown on desktop */}
-              <motion.div 
-                className="hidden md:block absolute bottom-16 left-1/2 -translate-x-1/2 text-white/50 text-xs z-20"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3 }}
-              >
-                Use ← → arrow keys to navigate
-              </motion.div>
-            </motion.div>
+              <div className="md:hidden absolute inset-0 z-20" />
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
