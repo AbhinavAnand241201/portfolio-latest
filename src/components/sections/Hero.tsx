@@ -33,11 +33,11 @@ const Hero: React.FC = () => {
             </motion.h1>
           </LampContainer>
           
-          <p className="text-lg md:text-xl text-white mb-4 max-w-2xl mx-auto">
-            Building the Future of Tech with Web3 and iOS Innovation
-          </p>
-          <p className="text-md md:text-lg text-gray-300 mb-10 max-w-2xl mx-auto">
+          <p className="text-md md:text-lg text-gray-300 mb-2 max-w-2xl mx-auto">
             3rd yr B.Tech undergrad at NIT-Durgapur
+          </p>
+          <p className="text-lg md:text-xl text-white mb-10 max-w-2xl mx-auto">
+            Building the Future of Tech with Web3 and iOS Innovation
           </p>
           
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
