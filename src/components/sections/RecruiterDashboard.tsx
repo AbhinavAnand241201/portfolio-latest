@@ -39,7 +39,7 @@ const RecruiterDashboard: React.FC = () => {
               </li>
             </ul>
             <div className="flex flex-col md:flex-row gap-4">
-              <a href="https://drive.google.com/file/d/1oqa77ikJkqzqgUEOvufLZ9PkQzhSJE9C/view" className="btn flex items-center gap-2" target="_blank" rel="noopener noreferrer">
+              <a href="https://drive.google.com/file/d/10_B_aIiQEo8Kw2O07bW7yL09hDKV-c0X/view" className="btn flex items-center gap-2" target="_blank" rel="noopener noreferrer">
                 <Download size={18} /> Download Resume
               </a>
               <a href="#contact" className="btn flex items-center gap-2">
