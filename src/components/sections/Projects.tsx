@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Github, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -14,6 +14,13 @@ interface Project {
 }
 
 const projects: Project[] = [
+  {
+    title: 'ContractGuard AI',
+    description: 'ContractGuard AI is an AI-powered contract analysis platform that helps users understand and negotiate legal documents. It provides intelligent tools for contract analysis, risk assessment, and legal document understanding with plain-English explanations. The platform features a negotiation simulator and clause analysis to help users make informed decisions about their contracts.',
+    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Firebase', 'GenKit AI'],
+    github: 'https://github.com/AbhinavAnand241201/contract-Guard-AI',
+    demo: 'https://contract-guard-ai.vercel.app'
+  },
   {
     title: 'Pocket Butler - iOS',
     description: 'Pocket Butler is an iOS app that helps you keep track of your everyday items. It allows you to quickly log where you placed items and retrieve that information in seconds when you need them. Features include voice/one-tap logging, smart alerts, shared household log, favorites & history, and panic mode to help locate nearby items.',
